@@ -1,0 +1,5 @@
+*.env
+
+sample-nft/artifacts-zk/
+sample-nft/cache-zk/
+sample-nft/deployments-zk/

@@ -1,0 +1,22 @@
+{
+  "name": "sample-nft",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@matterlabs/hardhat-zksync": "^1.1.0",
+    "@matterlabs/hardhat-zksync-verify": "^1.6.0",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "erc721a": "^4.3.0",
+    "hardhat": "^2.22.7"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.6.0",
+    "dotenv": "^16.4.5"
+  }
+}
