@@ -35,4 +35,6 @@ contract SamplePaymaster is IPaymaster {
         (bool success, ) = BOOTLOADER.call{value: requiredETH}("");
         require(success);
     }
+
+    receive() external payable {}
 }
