@@ -169,7 +169,7 @@ export default function Home() {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h1 style={styles.title}>Abstract Sponsored NFT Mint</h1>
+        <h1 style={styles.title}>Abstract Sponsored Transaction Demo</h1>
         {account ? (
           <p style={styles.accountText}>Connected Account: {account}</p>
         ) : (
@@ -185,7 +185,7 @@ export default function Home() {
         </button>
         {transactionHash && (
           <div style={styles.transactionInfo}>
-            <p>Transaction sent!</p>
+            <p style={styles.transactionText}>NFT minted with no gas!</p>
             <a 
               href={`https://explorer.testnet.abs.xyz/tx/${transactionHash}`}
               target="_blank"
@@ -216,12 +216,14 @@ const styles = {
     padding: '2rem',
     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
     textAlign: 'center' as const,
-    maxWidth: '400px',
+    maxWidth: '600px',
     width: '100%',
   },
   title: {
     color: '#333',
     marginBottom: '1.5rem',
+    fontWeight: 'bold', // This makes the title bold
+    fontSize: '24px', 
   },
   accountText: {
     color: '#666',
@@ -233,13 +235,24 @@ const styles = {
     marginBottom: '1rem',
   },
   transactionInfo: {
+    color: 'blue',
     marginTop: '1rem',
     fontSize: '14px',
+    display: 'flex',
+    flexDirection: 'column' as const,
+    alignItems: 'center',
+  },
+  transactionText: {
+    marginBottom: '0.5rem', // This adds space between the text and the link
   },
   link: {
     color: '#4CAF50',
     textDecoration: 'none',
     fontWeight: 'bold' as const,
+    padding: '0.5rem 1rem', // This adds padding around the link text
+    border: '1px solid #4CAF50',
+    borderRadius: '4px',
+    transition: 'background-color 0.3s, color 0.3s',
   },
   button: {
     backgroundColor: '#4CAF50',

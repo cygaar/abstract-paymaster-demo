@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Free Abstract NFT Mint",
+  title: "Abstract Sponsored Transaction",
   description: "NFT mint with Paymaster on Abstract",
 };
 
