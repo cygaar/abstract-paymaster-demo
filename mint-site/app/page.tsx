@@ -171,7 +171,7 @@ export default function Home() {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h1 style={styles.title}>Abstract Sponsored Transaction Demo</h1>
+      <h1 style={styles.title}>Abstract Sponsored Transaction Demo</h1>
         {account ? (
           <p style={styles.accountText}>Connected Account: {account}</p>
         ) : (
@@ -179,11 +179,21 @@ export default function Home() {
         )}
         {!isCorrectNetwork && <p style={styles.warningText}>Please switch to the Abstract Testnet</p>}
         <button 
-          style={isTransactionPending ? {...styles.button, ...styles.disabledButton} : styles.button} 
-          onClick={handleClick}
+          style={
+            !isCorrectNetwork
+              ? styles.blueButton
+              : isTransactionPending
+              ? {...styles.button, ...styles.disabledButton}
+              : styles.button
+          } 
+          onClick={!isCorrectNetwork ? switchNetwork : handleClick}
           disabled={isTransactionPending}
         >
-          {isTransactionPending ? 'Waiting...' : 'Mint NFT'}
+          {!isCorrectNetwork
+            ? 'Change network to Abstract Testnet'
+            : isTransactionPending
+            ? 'Waiting...'
+            : 'Mint NFT'}
         </button>
         {transactionHash && (
           <div style={styles.transactionInfo}>
@@ -258,6 +268,20 @@ const styles = {
   },
   button: {
     backgroundColor: '#4CAF50',
+    border: 'none',
+    color: 'white',
+    padding: '15px 32px',
+    textAlign: 'center' as const,
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px',
+    margin: '4px 2px',
+    cursor: 'pointer',
+    borderRadius: '4px',
+    transition: 'background-color 0.3s',
+  },
+  blueButton: {
+    backgroundColor: '#007bff',
     border: 'none',
     color: 'white',
     padding: '15px 32px',
