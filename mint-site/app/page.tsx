@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { createWalletClient, custom, encodeFunctionData, Hash, Address, defineChain, Chain, createPublicClient, http } from 'viem';
 import { eip712WalletActions, getGeneralPaymasterInput, chainConfig } from 'viem/zksync';
-
-// Import your ABI
 import contractABI from './abi/SampleNFT.json';
 
 declare global {
@@ -13,6 +11,11 @@ declare global {
   }
 }
 
+const NFT_CONTRACT_ADDRESS = "0xC4822AbB9F05646A9Ce44EFa6dDcda0Bf45595AA";
+const PAYMASTER_ADDRESS = "0xa8dA6C5bf7dA8c2D5A642D3dcc0E04D68D134806";
+
+// This chain config will be added to a future version of viem
+// https://github.com/wevm/viem/pull/2581
 const abstract: Chain = defineChain({
   ...chainConfig,
   id: 11124,
@@ -32,7 +35,7 @@ const abstract: Chain = defineChain({
 });
 
 const publicClient = createPublicClient({
-  chain: abstract, // Use your defined chain
+  chain: abstract,
   transport: http()
 });
 
@@ -132,7 +135,6 @@ export default function Home() {
       }
     }
 
-    const nftAddress = "0xC4822AbB9F05646A9Ce44EFa6dDcda0Bf45595AA";
 
     try {
       setIsTransactionPending(true);
@@ -145,13 +147,13 @@ export default function Home() {
       });
       const hash: Hash = await walletClient.sendTransaction({
         account,
-        to: nftAddress,
+        to: NFT_CONTRACT_ADDRESS,
         data: encodeFunctionData({
           abi: contractABI.abi,
           functionName: "mint",
           args: [account, 1]
         }),
-        paymaster: '0xa8dA6C5bf7dA8c2D5A642D3dcc0E04D68D134806',
+        paymaster: PAYMASTER_ADDRESS,
         paymasterInput: paymasterInput,
         nonce: nonce
       });
@@ -185,7 +187,7 @@ export default function Home() {
         </button>
         {transactionHash && (
           <div style={styles.transactionInfo}>
-            <p style={styles.transactionText}>NFT minted with no gas!</p>
+            <p style={styles.transactionText}>Minted with no gas fees!</p>
             <a 
               href={`https://explorer.testnet.abs.xyz/tx/${transactionHash}`}
               target="_blank"

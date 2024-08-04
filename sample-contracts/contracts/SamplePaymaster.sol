@@ -18,7 +18,7 @@ contract SamplePaymaster is IPaymaster {
     ) external payable returns (bytes4 magic, bytes memory context) {
         require(
             msg.sender == BOOTLOADER,
-            "Only Bootloader can call this function"
+            "Only the Bootloader can call this function"
         );
 
         require(
