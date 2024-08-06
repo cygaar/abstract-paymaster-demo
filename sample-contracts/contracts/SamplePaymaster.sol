@@ -33,7 +33,7 @@ contract SamplePaymaster is IPaymaster {
         uint requiredETH = _transaction.gasLimit * _transaction.maxFeePerGas;
 
         (bool success, ) = BOOTLOADER.call{value: requiredETH}("");
-        require(success);
+        require(success, "Bootloader call failed");
     }
 
     receive() external payable {}
