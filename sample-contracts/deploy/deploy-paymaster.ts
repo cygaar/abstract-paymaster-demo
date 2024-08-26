@@ -13,7 +13,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // Create deployer object and load the artifact of the contract we want to deploy.
   const deployer = new Deployer(hre, wallet);
   // Load contract
-  const artifact = await deployer.loadArtifact("SamplePaymaster");
+  const artifact = await deployer.loadArtifact("AAFactoryPaymaster");
  
   // Deploy this contract. The returned object will be of a `Contract` type,
   // similar to the ones in `ethers`.
